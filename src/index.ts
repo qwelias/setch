@@ -1,36 +1,28 @@
 /**
- * Make setch function with baseUrl, baseOptions, baseStatus
- *
- * @param baseUrl url string to use as a base
- * @param baseOptions request options to use as a base
- * @param baseStatus expected base status code
- * @returns `setch` function where you can append to `baseUrl`,
- * merge extra options (`headers` merged separately, so it's required to be a `Record`),
- * or use another expected status
+ * Make setch function capturing base url and some defaults for reusability sake
  */
  export const makeSetch = (
     baseUrl: string,
-    baseOptions: SetchInit = {},
-    baseStatus?: Status,
-): typeof setch => (url, options = {}, status?) => setch(
+    defaultOptions: SetchInit = {},
+    defaultExpectedStatus?: ExpectedStatus,
+): typeof setch => (url, options = {}, expectedStatus?) => setch(
     baseUrl + url,
-    { ...baseOptions, ...options, headers: { ...baseOptions?.headers, ...options?.headers } },
-    status ?? baseStatus,
+    { ...defaultOptions, ...options, headers: { ...defaultOptions?.headers, ...options?.headers } },
+    expectedStatus ?? defaultExpectedStatus,
 )
 
 /**
- * fetch and throw on unexpected status code
- *
- * @param url
- * @param options same as `RequestInit`, except `headers` have to be a `Record` so it's easy to merge them with ones from `baseOptions`
- * @param status expected response status code.
- * Either number or RegExp to match,
- * if true uses Response.ok, if false no check is made
+ * Do fetch and throw on unexpected status code,
+ * see `ExpectedStatus` docs for details
  */
-export const setch = async (url: string, options: SetchInit = {}, status: Status = true) => {
+export const setch = async (
+    url: string,
+    options: SetchInit = {},
+    expectedStatus: ExpectedStatus = true,
+) => {
     const res = await fetch(url, options)
 
-    if (!isOk(status, res)) throw Object.assign(
+    if (!isOk(expectedStatus, res)) throw Object.assign(
         new Error(res.statusText),
         { name: 'SetchStatusError', statusCode: res.status, req: { url, options }, expected: status },
     )
@@ -38,9 +30,23 @@ export const setch = async (url: string, options: SetchInit = {}, status: Status
     return res
 }
 
+/**
+ * Same as standard `RequestInit`, except `headers` can be only Record,
+ * so they can be easily merged in `makeSetch`
+ */
 export type SetchInit = Omit<RequestInit, 'headers'> & { headers?: Record<string, string> }
-export type Status = number | RegExp | boolean
-export const isOk = (status: Status, res: Response) => {
+
+/**
+ * Either boolean or number or RegExp to match,
+ * if true uses Response.ok, if false no check is made.
+ * See `isOk` for implementation reference
+ */
+export type ExpectedStatus = number | RegExp | boolean
+
+/**
+ * Implements `ExpectedStatus` check against `Response`
+ */
+export const isOk = (status: ExpectedStatus, res: Response) => {
     if (status === false) return true
     if (status === true) return res.ok
     if (status instanceof RegExp) return status.test(String(res.status))

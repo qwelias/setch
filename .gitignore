@@ -4,5 +4,7 @@ node_modules
 tmp
 .env
 
+docs
+cjs
 dist
 tsconfig.tsbuildinfo
