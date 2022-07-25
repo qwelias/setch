@@ -24,7 +24,7 @@ export const setch = async (
 
     if (!isOk(expectedStatus, res)) throw Object.assign(
         new Error(res.statusText),
-        { name: 'SetchStatusError', statusCode: res.status, req: { url, options }, expected: status },
+        { name: 'SetchStatusError', statusCode: res.status, req: { url, options }, expectedStatus },
     )
 
     return res
