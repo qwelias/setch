@@ -19,6 +19,7 @@ jobs:
       - run: npm ci
 
       - run: npx typedoc --excludeExternals src/*
+      - run: echo setch.qwelias.me > ./docs/CNAME
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
