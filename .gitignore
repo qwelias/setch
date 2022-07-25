@@ -1,0 +1,8 @@
+#node
+node_modules
+*.log
+tmp
+.env
+
+dist
+tsconfig.tsbuildinfo

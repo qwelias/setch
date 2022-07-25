@@ -1,0 +1,24 @@
+name: CI + Docker Image
+
+on: push
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+
+      - run: npm audit --audit-level=high
+      - run: npm ci
+      - run: npm run build
+
+      - name: Semantic Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          FURY_AUTH: ${{ secrets.FURY_AUTH_PUSH }}
+        run: npx semantic-release
