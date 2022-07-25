@@ -18,4 +18,4 @@ const json = await setch(
 ```
 
 ### docs
-there's not much to it really, have a look at [source](./src/index.ts) or [generated typedoc](https://setch.qwelias.me/functions/setch.html)
+there's not much to it really, have a look at [source](https://github.com/qwelias/setch/blob/master/src/index.ts) or [generated typedoc](https://setch.qwelias.me/functions/setch.html)
