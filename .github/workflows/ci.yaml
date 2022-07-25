@@ -1,4 +1,4 @@
-name: CI + Docker Image
+name: CI
 
 on: push
 
@@ -20,5 +20,5 @@ jobs:
       - name: Semantic Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          FURY_AUTH: ${{ secrets.FURY_AUTH_PUSH }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npx semantic-release
