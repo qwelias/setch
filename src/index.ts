@@ -29,7 +29,7 @@ export class SetchStatusError extends Error {
             message: this.message,
             url: this.url,
             options: this.options,
-            expectedStatus: this.expectedStatusToJson,
+            expectedStatus: this.expectedStatusToJson(),
             res: {
                 status: this.res.status,
                 // @ts-ignore TS dumm, it's there
