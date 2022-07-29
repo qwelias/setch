@@ -7,14 +7,13 @@
 ### usage
 ```ts
 // basics
-import { setch, mime } from 'setch'
+import { setch, makeSetch, mime } from 'setch'
 
-// will reject if !Response.ok, so we can safely call json()
-// see docs for more configuration
-const json = await setch(
-  urlString,
-  { headers: { accept: mime.json } },
-).then(r => r.json())
+const setchMyApi = makeSetch(baseUrl, { headers: { accept: mime.json } }, 200)
+
+// will reject if res.status !== 200, so we can safely call json()
+// see setch.qwelias.me for more
+const json = await setchMyApi(urlString).then(r => r.json())
 ```
 
 ### docs
