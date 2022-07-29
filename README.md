@@ -1,5 +1,10 @@
 **S**implest f**ETCH** wrapper I could come up with to reduce boilerplate code when using `fetch` on a daily basis while keeping as much compatibility with standard as possible
 
+## features
+- creating `setch` functions with default options
+- flexible status code checks with proper errors
+- aliases to common content-type strings
+
 ## install
 `npm i setch`
 

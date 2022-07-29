@@ -2,6 +2,10 @@ name: GH Pages
 
 on:
   push:
+    paths:
+      - 'src/**'
+      - 'tsconfig.json'
+      - 'README.md'
     branches:
       - master
 
