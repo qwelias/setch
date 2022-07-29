@@ -18,7 +18,7 @@ jobs:
 
       - run: npm ci
 
-      - run: npx typedoc --excludeExternals src/*
+      - run: npx typedoc --excludeExternals src/index.ts
       - run: echo setch.qwelias.me > ./docs/CNAME
 
       - name: Deploy
