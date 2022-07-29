@@ -10,27 +10,24 @@
 <div class="col-8 col-content">
 <div class="tsd-page-title">
 <h2>setch</h2></div>
-<div class="tsd-panel tsd-typography">
-<a href="#setch" id="setch" style="color: inherit; text-decoration: none;">
-  <h1>setch</h1>
-</a>
-<p><strong>S</strong>implest f<strong>ETCH</strong> wrapper I could come up with to reduce boilerplate code when using <code>fetch</code> on a daily basis while keeping as much compatibility with standatd as possible</p>
+<div class="tsd-panel tsd-typography"><p><strong>S</strong>implest f<strong>ETCH</strong> wrapper I could come up with to reduce boilerplate code when using <code>fetch</code> on a daily basis while keeping as much compatibility with standard as possible</p>
 
 <a href="#install" id="install" style="color: inherit; text-decoration: none;">
-  <h3>install</h3>
+  <h2>install</h2>
 </a>
 <p><code>npm i setch</code></p>
 
 <a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
-  <h3>usage</h3>
+  <h2>usage</h2>
 </a>
-<pre><code class="language-ts"><span class="hl-0">// basics</span><br/><span class="hl-1">import</span><span class="hl-2"> { </span><span class="hl-3">setch</span><span class="hl-2">, </span><span class="hl-3">makeSetch</span><span class="hl-2">, </span><span class="hl-3">mime</span><span class="hl-2"> } </span><span class="hl-1">from</span><span class="hl-2"> </span><span class="hl-4">&#39;setch&#39;</span><br/><br/><span class="hl-5">const</span><span class="hl-2"> </span><span class="hl-6">setchMyApi</span><span class="hl-2"> = </span><span class="hl-7">makeSetch</span><span class="hl-2">(</span><span class="hl-3">baseUrl</span><span class="hl-2">, { </span><span class="hl-3">headers:</span><span class="hl-2"> { </span><span class="hl-3">accept:</span><span class="hl-2"> </span><span class="hl-3">mime</span><span class="hl-2">.</span><span class="hl-3">json</span><span class="hl-2"> } }, </span><span class="hl-8">200</span><span class="hl-2">)</span><br/><br/><span class="hl-0">// will reject if res.status !== 200, so we can safely call json()</span><br/><span class="hl-0">// see setch.qwelias.me for more</span><br/><span class="hl-5">const</span><span class="hl-2"> </span><span class="hl-6">json</span><span class="hl-2"> = </span><span class="hl-1">await</span><span class="hl-2"> </span><span class="hl-7">setchMyApi</span><span class="hl-2">(</span><span class="hl-3">urlString</span><span class="hl-2">).</span><span class="hl-7">then</span><span class="hl-2">(</span><span class="hl-3">r</span><span class="hl-2"> </span><span class="hl-5">=&gt;</span><span class="hl-2"> </span><span class="hl-3">r</span><span class="hl-2">.</span><span class="hl-7">json</span><span class="hl-2">())</span>
+<pre><code class="language-ts"><span class="hl-0">// basics, see docs for details</span><br/><span class="hl-1">import</span><span class="hl-2"> { </span><span class="hl-3">setch</span><span class="hl-2">, </span><span class="hl-3">makeSetch</span><span class="hl-2">, </span><span class="hl-3">mime</span><span class="hl-2"> } </span><span class="hl-1">from</span><span class="hl-2"> </span><span class="hl-4">&#39;setch&#39;</span><br/><br/><span class="hl-0">// capture common parameters for reuse</span><br/><span class="hl-5">const</span><span class="hl-2"> </span><span class="hl-6">setchMyApi</span><span class="hl-2"> = </span><span class="hl-7">makeSetch</span><span class="hl-2">(</span><br/><span class="hl-2">  </span><span class="hl-3">baseUrlString</span><span class="hl-2">, </span><span class="hl-0">// final url will be baseUrlString + urlString</span><br/><span class="hl-2">  { </span><span class="hl-3">headers:</span><span class="hl-2"> { </span><span class="hl-3">accept:</span><span class="hl-2"> </span><span class="hl-3">mime</span><span class="hl-2">.</span><span class="hl-3">json</span><span class="hl-2"> } }, </span><span class="hl-0">// will be merged with options, headers too</span><br/><span class="hl-2">  </span><span class="hl-8">200</span><span class="hl-2">, </span><span class="hl-0">// expected status, will throw if it isn&#39;t, can be overridden and flexible, see docs</span><br/><span class="hl-2">)</span><br/><span class="hl-0">// same as setch, but uses captured parameters too</span><br/><span class="hl-5">const</span><span class="hl-2"> </span><span class="hl-6">json</span><span class="hl-2"> = </span><span class="hl-1">await</span><span class="hl-2"> </span><span class="hl-7">setchMyApi</span><span class="hl-2">(</span><span class="hl-3">urlString</span><span class="hl-2">, </span><span class="hl-3">options</span><span class="hl-2">).</span><span class="hl-7">then</span><span class="hl-2">(</span><span class="hl-3">r</span><span class="hl-2"> </span><span class="hl-5">=&gt;</span><span class="hl-2"> </span><span class="hl-3">r</span><span class="hl-2">.</span><span class="hl-7">json</span><span class="hl-2">())</span>
 </code></pre>
 
 <a href="#docs" id="docs" style="color: inherit; text-decoration: none;">
-  <h3>docs</h3>
+  <h2>docs</h2>
 </a>
-<p>there&#39;s not much to it really, have a look at <a href="https://github.com/qwelias/setch/blob/master/src/index.ts">source</a> or <a href="https://setch.qwelias.me/functions/setch.html">generated typedoc</a></p>
+<p><a href="https://setch.qwelias.me">generated typedoc</a></p>
+<p>but there&#39;s not much to it really, have a look at <a href="https://github.com/qwelias/setch/blob/master/src/index.ts">source</a> if you&#39;re curious :^)</p>
 </div></div>
 <div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 <div class="tsd-navigation settings">
