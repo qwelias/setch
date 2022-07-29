@@ -26,4 +26,4 @@ const json = await setchMyApi(urlString, options).then(r => r.json())
 ## docs
 [generated typedoc](https://setch.qwelias.me)
 
-but there's not much to it really, have a look at [source](https://github.com/qwelias/setch/blob/master/src/index.ts) if you're curious :^)
+but there's not much to it really, have a look at [source](https://github.com/qwelias/setch/blob/master/src) if you're curious :^)
