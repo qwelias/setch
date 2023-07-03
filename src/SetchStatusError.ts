@@ -10,6 +10,7 @@ export class SetchStatusError extends Error {
         readonly expectedStatus: ExpectedStatus,
     ) {
         super('Unexpected HTTP response status code')
+
         // makes it appear in logs, etc. (class fields don't)
         Object.defineProperty(this, 'status', {
             enumerable: true,
