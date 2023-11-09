@@ -6,5 +6,5 @@ tmp
 
 docs
 cjs
-dist
-tsconfig.tsbuildinfo
+esm
+*.tsbuildinfo

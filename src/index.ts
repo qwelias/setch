@@ -1,4 +1,4 @@
-export type { SetchInit, ExpectedStatus } from './types'
-export { mime } from './mime'
-export { SetchStatusError } from './SetchStatusError'
-export { setch, makeSetch } from './setch'
+export type { SetchInit, ExpectedStatus } from './types.js'
+export { mime } from './mime.js'
+export { SetchStatusError } from './SetchStatusError.js'
+export { setch, makeSetch } from './setch.js'

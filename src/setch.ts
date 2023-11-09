@@ -1,5 +1,5 @@
-import { SetchStatusError } from './SetchStatusError'
-import type { SetchInit, ExpectedStatus } from './types'
+import { SetchStatusError } from './SetchStatusError.js'
+import type { SetchInit, ExpectedStatus } from './types.js'
 
 /**
  * Make setch function capturing base url and some defaults for reusability sake

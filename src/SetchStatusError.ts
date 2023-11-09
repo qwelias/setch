@@ -1,4 +1,4 @@
-import type { SetchInit, ExpectedStatus } from './types'
+import type { SetchInit, ExpectedStatus } from './types.js'
 
 export class SetchStatusError extends Error {
     override name = 'SetchStatusError'
