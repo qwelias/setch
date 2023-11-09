@@ -29,11 +29,14 @@ export class SetchStatusError extends Error {
     }
 
     toJSON() {
+        const options = { ...this.options }
+        if ('body' in options) options.body = '[REDACTED]' // body is potentially huge
+
         return {
             name: this.name,
             message: this.message,
             url: this.url,
-            options: this.options,
+            options,
             expectedStatus: this.expectedStatusToJson(),
             res: {
                 status: this.res.status,
