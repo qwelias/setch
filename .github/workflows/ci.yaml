@@ -2,17 +2,18 @@ name: CI
 
 on:
   push:
-    paths:
-      - 'src/**'
-      - 'package*.json'
-      - 'tsconfig.json'
+    branches:
+      - master
+
+permissions:
+  contents: write
+  pull-requests: write
 
 jobs:
   ci:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
       - uses: actions/setup-node@v2
         with:
@@ -22,8 +23,13 @@ jobs:
       - run: npm ci
       - run: npm run build
 
-      - name: Semantic Release
+      - uses: google-github-actions/release-please-action@v3
+        id: release
+        with:
+          release-type: node
+          package-name: setch
+
+      - run: npm publish
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npx semantic-release
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+        if: ${{ steps.release.outputs.release_created }}

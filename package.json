@@ -36,8 +36,6 @@
     },
     "homepage": "https://github.com/qwelias/setch#readme",
     "devDependencies": {
-        "conventional-changelog-conventionalcommits": "^7.0.2",
-        "semantic-release": "^22.0.7",
         "typedoc": "^0.25.3",
         "typescript": "^5.2.2"
     }
