@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.1](https://github.com/qwelias/setch/compare/v2.2.0...v2.2.1) (2023-11-10)
+
+
+### Miscellaneous Chores
+
+* fix npm publish ([5a97a46](https://github.com/qwelias/setch/commit/5a97a46acfffce05cf91fe3b780e111efe2dd5f6))
+
 ## 2.2.0 (2023-11-10)
 
 
