@@ -8,7 +8,7 @@
         "esm"
     ],
     "scripts": {
-        "test": "echo hi :^)",
+        "test": "echo TODO",
         "build": "npm run build:esm && npm run build:cjs",
         "build:esm": "tsc --build tsconfig.esm.json",
         "postbuild:esm": "echo '{\"type\":\"module\"}' > esm/package.json",
@@ -36,6 +36,8 @@
     },
     "homepage": "https://github.com/qwelias/setch#readme",
     "devDependencies": {
+        "conventional-changelog-conventionalcommits": "^7.0.2",
+        "semantic-release": "^22.0.12",
         "typedoc": "^0.25.3",
         "typescript": "^5.2.2"
     }
