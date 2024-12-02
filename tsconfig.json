@@ -5,7 +5,8 @@
         "rootDir": "src",
 
         "lib": ["ES2023", "dom"],
-        "allowSyntheticDefaultImports": true,
+        "target": "ES2023",
+
         "composite": true,
 
         "strict": true,
