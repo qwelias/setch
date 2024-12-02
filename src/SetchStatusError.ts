@@ -10,22 +10,6 @@ export class SetchStatusError extends Error {
         readonly expectedStatus: ExpectedStatus,
     ) {
         super('Unexpected HTTP response status code')
-
-        // makes it appear in logs, etc. (class fields don't)
-        Object.defineProperty(this, 'status', {
-            enumerable: true,
-            get: () => this.res.status,
-        })
-    }
-
-    get statusCode() {
-        return this.res.status
-    }
-
-    expectedStatusToJson() {
-        return this.expectedStatus instanceof RegExp
-            ? `RegExp(${String(this.expectedStatus)})`
-            : this.expectedStatus
     }
 
     toJSON() {
@@ -34,12 +18,22 @@ export class SetchStatusError extends Error {
             message: this.message,
             url: this.url,
             options: this.options,
-            expectedStatus: this.expectedStatusToJson(),
-            res: {
-                status: this.res.status,
-                // @ts-ignore TS dumm, it's there
-                headers: Object.fromEntries([...this.res.headers.entries()]),
-            },
+            expectedStatus: expectedStatusToJson(this.expectedStatus),
+            res: resToJson(this.res),
         }
+    }
+}
+
+const expectedStatusToJson = (expectedStatus: ExpectedStatus) => {
+    return expectedStatus instanceof RegExp
+        ? `RegExp(${String(expectedStatus)})`
+        : expectedStatus
+}
+
+const resToJson = (res: Response) => {
+    return {
+        status: res.status,
+        // @ts-ignore it works
+        headers: Object.fromEntries([...res.headers]),
     }
 }

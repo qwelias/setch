@@ -2,7 +2,9 @@
  * Same as standard `RequestInit`, except `headers` can be only Record,
  * so they can be easily merged in `makeSetch`
  */
-export type SetchInit = Omit<RequestInit, 'headers'> & { headers?: Record<string, string> }
+export type SetchInit =
+& Omit<RequestInit, 'headers'>
+& { headers?: Record<string, string> }
 
 /**
  * Either boolean or number or RegExp to match,
