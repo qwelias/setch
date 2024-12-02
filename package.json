@@ -38,7 +38,7 @@
     "devDependencies": {
         "conventional-changelog-conventionalcommits": "^7.0.2",
         "semantic-release": "^22.0.12",
-        "typedoc": "^0.25.3",
+        "typedoc": "^0.27.2",
         "typescript": "^5.7.2"
     }
 }
