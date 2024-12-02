@@ -2,10 +2,6 @@ name: GH Pages
 
 on:
   push:
-    paths:
-      - 'src/**'
-      - 'tsconfig.json'
-      - 'README.md'
     branches:
       - master
 
@@ -18,7 +14,7 @@ jobs:
 
       - uses: actions/setup-node@v2
         with:
-          node-version: '20'
+          node-version: '22'
 
       - run: npm ci
 
